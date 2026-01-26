@@ -13,12 +13,18 @@ if len(sys.argv) == 1:
 args = parser.parse_args()
 args.seq = args.seq.upper()
 
+
 if re.search('^[ACGTU]+$', args.seq):
-    if re.search('T', args.seq):
-        print ('The sequence is DNA')
-    elif re.search('U', args.seq):
-        print ('The sequence is RNA')
+    has_t = 'T' in args.seq
+    has_u = 'U' in args.seq
+
+    if has_t and has_u:
+        print('The sequence is not DNA nor RNA')
+    elif has_t:
+        print('The sequence is DNA')
+    elif has_u:
+        print('The sequence is RNA')
     else:
-        print ('The sequence can be DNA or RNA')
+        print('The sequence can be DNA or RNA')
 else:
-    print ('The sequence is not DNA nor RNA')
+    print('The sequence is not DNA nor RNA')
